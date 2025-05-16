@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    tools:context=".RequestUrgencyActivity">
+
+    <!-- Conteúdo centralizado -->
+    <LinearLayout
+        android:id="@+id/verticalLayoutRequest"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:padding="24dp"
+        android:gravity="center"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:id="@+id/logoLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="16dp">
+
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:src="@drawable/urgenciasegura"
+                android:contentDescription="Logo" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Urgência Segura"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:textColor="#264D73"
+                android:layout_marginStart="8dp" />
+        </LinearLayout>
+
+        <!-- Título -->
+        <TextView
+            android:id="@+id/textPergunta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Quem precisa de urgência?"
+            android:textSize="18sp"
+            android:textColor="#264D73"
+            android:textStyle="bold"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Opções de escolha -->
+        <RadioGroup
+            android:id="@+id/radioGroupOpcao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="16dp">
+
+            <RadioButton
+                android:id="@+id/radioEu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#264D73"
+                android:text="Para mim" />
+
+            <RadioButton
+                android:id="@+id/radioOutro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Para outra pessoa"
+                android:textColor="#264D73"
+                android:layout_marginStart="24dp" />
+        </RadioGroup>
+
+        <!-- Dados do próprio usuário (visível somente se selecionado "para mim") -->
+        <LinearLayout
+            android:id="@+id/layoutDadosUsuario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/card_background"
+            android:padding="16dp"
+            android:elevation="4dp"
+            android:layout_margin="16dp"
+            android:checked="true"
+            android:visibility="gone">
+
+            <EditText
+                android:id="@+id/editNome"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nome"
+                android:layout_marginBottom="8dp" />
+
+            <EditText
+                android:id="@+id/editEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Email"
+                android:layout_marginBottom="8dp" />
+
+            <EditText
+                android:id="@+id/editCelular"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Celular"
+                android:layout_marginBottom="8dp" />
+
+            <EditText
+                android:id="@+id/editIdade"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Idade"
+                android:inputType="number"
+                android:layout_marginBottom="8dp" />
+        </LinearLayout>
+
+        <!-- Dados da outra pessoa (visível somente se selecionado "outra pessoa") -->
+        <LinearLayout
+            android:id="@+id/layoutOutraPessoa"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/card_background"
+            android:padding="16dp"
+            android:elevation="4dp"
+            android:layout_margin="16dp"
+            android:visibility="gone">
+
+            <EditText
+                android:id="@+id/inputNomeOutro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nome da pessoa"
+                android:layout_marginBottom="8dp" />
+
+            <EditText
+                android:id="@+id/inputIdadeOutro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Idade"
+                android:inputType="number"
+                android:layout_marginBottom="8dp" />
+
+            <EditText
+                android:id="@+id/inputObservacao"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Observação (opcional)"
+                android:layout_marginBottom="8dp" />
+        </LinearLayout>
+
+        <!-- Gravidade da urgência -->
+        <TextView
+            android:id="@+id/textGravidade"
+            android:layout_width="wrap_content"
+            android:layout_height="16dp"
+            android:layout_marginBottom="8dp"
+            android:text="Selecione a gravidade:"
+            android:textColor="#264D73"
+            android:textSize="16sp" />
+
+        <Spinner
+            android:id="@+id/spinnerGravidade"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp" />
+
+        <EditText
+            android:id="@+id/inputOutroTipo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Descreva o tipo de urgência"
+            android:visibility="gone"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Linha com os botões: Enviar Foto e Enviar Localização -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginBottom="16dp"
+            android:weightSum="2">
+
+            <Button
+                android:id="@+id/buttonEnviarImagem"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Enviar Foto"
+                android:backgroundTint="#49A6E9"
+                android:textColor="#FFFFFF"
+                android:layout_marginEnd="8dp"/>
+
+            <Button
+                android:id="@+id/buttonLocalizacao"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Enviar Localização"
+                android:backgroundTint="#49A6E9"
+                android:textColor="#FFFFFF"
+                android:layout_marginStart="8dp"/>
+        </LinearLayout>
+
+        <!-- Linha com os botões: Voltar e Enviar Solicitação -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:weightSum="2">
+
+            <Button
+                android:id="@+id/buttonVoltarHome"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Voltar"
+                android:backgroundTint="#264D73"
+                android:textColor="#FFFFFF"
+                android:layout_marginEnd="8dp"/>
+
+            <Button
+                android:id="@+id/buttonEnviarSolicitacao"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Enviar Solicitação"
+                android:backgroundTint="#264D73"
+                android:textColor="#FFFFFF"
+                android:layout_marginStart="8dp"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

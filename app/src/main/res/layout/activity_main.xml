@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    tools:context=".MainActivity">
+
+    <!-- Vertical_Arrangement1 -->
+    <LinearLayout
+        android:id="@+id/verticalLayoutMain"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="24dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- Horizontal_Arrangement1 -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="16dp">
+
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:src="@drawable/urgenciasegura"
+                android:contentDescription="Logo" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Urgência Segura"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:textColor="#264D73"
+                android:layout_marginStart="8dp" />
+
+        </LinearLayout>
+
+        <!-- Vertical_Arrangement2 -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bem-vindo! Solicite ajuda com segurança e agilidade."
+            android:textColor="#264D73"
+            android:textSize="16sp"
+            android:layout_marginBottom="24dp"
+            android:gravity="center" />
+
+        <!-- Horizontal_Arrangement3 -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginBottom="24dp">
+
+            <Button
+                android:id="@+id/buttonLogin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Login"
+                android:backgroundTint="#49A6E9"
+                android:textColor="#FFFFFF"
+                android:layout_marginEnd="8dp" />
+
+            <Button
+                android:id="@+id/buttonCadastro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cadastro"
+                android:backgroundTint="#49A6E9"
+                android:textColor="#FFFFFF" />
+        </LinearLayout>
+
+        <!-- Vertical_Arrangement3 -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Aplicativo desenvolvido para ajudar quem realmente precisa."
+            android:textColor="#264D73"
+            android:textSize="14sp"
+            android:gravity="center" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

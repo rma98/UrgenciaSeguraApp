@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "736638285434",
+    "project_id": "urgenciasegura",
+    "storage_bucket": "urgenciasegura.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:736638285434:android:7e407a8ee10753cbbaadc3",
+        "android_client_info": {
+          "package_name": "com.ifpe.urgenciasegura"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDA3HzDzyp9LNPc8wrDfMyvPPlTM2wY3cY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
