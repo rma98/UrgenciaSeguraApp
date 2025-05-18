@@ -158,29 +158,40 @@
                 android:layout_marginBottom="8dp" />
         </LinearLayout>
 
-        <!-- Gravidade da urgência -->
-        <TextView
-            android:id="@+id/textGravidade"
-            android:layout_width="wrap_content"
-            android:layout_height="16dp"
-            android:layout_marginBottom="8dp"
-            android:text="Selecione a gravidade:"
-            android:textColor="#264D73"
-            android:textSize="16sp" />
-
-        <Spinner
-            android:id="@+id/spinnerGravidade"
+        <LinearLayout
+            android:id="@+id/layoutGravidade"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp" />
+            android:orientation="vertical"
+            android:background="@drawable/card_background"
+            android:padding="16dp"
+            android:elevation="4dp"
+            android:layout_margin="16dp">
 
-        <EditText
-            android:id="@+id/inputOutroTipo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Descreva o tipo de urgência"
-            android:visibility="gone"
-            android:layout_marginBottom="16dp" />
+            <!-- Gravidade da urgência -->
+            <TextView
+                android:id="@+id/textGravidade"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="Selecione a gravidade:"
+                android:textColor="#264D73"
+                android:textSize="16sp" />
+
+            <Spinner
+                android:id="@+id/spinnerGravidade"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp" />
+
+            <EditText
+                android:id="@+id/inputOutroTipo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Descreva o tipo de urgência"
+                android:visibility="gone"
+                android:layout_marginBottom="16dp" />
+        </LinearLayout>
 
         <!-- Linha com os botões: Enviar Foto e Enviar Localização -->
         <LinearLayout

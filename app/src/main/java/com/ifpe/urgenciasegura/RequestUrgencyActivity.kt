@@ -68,21 +68,27 @@ class RequestUrgencyActivity : AppCompatActivity() {
             }
         }
 
-        // Exemplo de campo adicional para "Outro" no spinner
         val spinnerGravidade = findViewById<Spinner>(R.id.spinnerGravidade)
         val editOutroTipo = findViewById<EditText>(R.id.inputOutroTipo)
+
+        val opcoes = listOf("Selecione a gravidade", "Acidente", "Mal-estar", "Desmaio", "Queimadura", "Sangramento", "Outro")
+        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, opcoes)
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinnerGravidade.adapter = adapter
 
         spinnerGravidade.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
                 val itemSelecionado = parent.getItemAtPosition(position).toString()
+
                 if (itemSelecionado == "Outro") {
                     editOutroTipo.visibility = View.VISIBLE
                 } else {
                     editOutroTipo.visibility = View.GONE
                 }
             }
-
-            override fun onNothingSelected(parent: AdapterView<*>) {}
+            override fun onNothingSelected(parent: AdapterView<*>) {
+                // Nada aqui por enquanto
+            }
         }
     }
 }
