@@ -97,7 +97,7 @@ A abordagem metodológica combina **pesquisas quantitativas e qualitativas**, ut
 
 ## 📦 Download do App
 
-➡️ [Clique aqui para baixar o UrgenciaSegura.apk](https://github.com/RobsonAlbuquerque/UrgenciaSeguraApp/releases/download/v1.0-beta/UrgenciaSegura.apk)
+➡️ [Clique aqui para baixar o UrgenciaSegura.apk](https://github.com/Rma98/UrgenciaSeguraApp/releases/download/v1.0-beta/UrgenciaSegura.apk)
 
 ---
 
