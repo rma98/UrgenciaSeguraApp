@@ -98,6 +98,25 @@ A abordagem metodológica combina **pesquisas quantitativas e qualitativas**, ut
 
 ---
 
+## 📦 Download do App
+
+➡️ [Clique aqui para baixar o UrgenciaSegura.apk](https://github.com/RobsonAlbuquerque/UrgenciaSeguraApp/releases/download/v1.0-beta/UrgenciaSegura.apk)
+
+---
+
+## 📲 Como instalar
+
+1. Faça o download do `.apk` acima.
+2. No seu celular, vá em **Configurações > Segurança**.
+3. Ative a opção **Fontes desconhecidas** ou **Permitir instalação de apps desconhecidos**.
+4. Localize o arquivo `UrgenciaSegura.apk` na pasta de downloads.
+5. Toque no arquivo e siga os passos para instalar.
+
+> ⚠️ Esta é uma versão de testes. Recomendamos cautela ao utilizá-la.  
+> Para dúvidas ou feedback, entre em contato no e-mail do desenvolvedor.
+
+---
+
 ## 📎 Licença
 
 Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
