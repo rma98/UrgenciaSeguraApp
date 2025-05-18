@@ -1,11 +1,13 @@
 package com.ifpe.urgenciasegura
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.AlertDialog
 import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.icu.text.SimpleDateFormat
 import android.location.Location
 import android.net.Uri
 import android.os.Bundle
@@ -24,13 +26,17 @@ import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.storage.FirebaseStorage
+import java.util.Date
+import java.util.Locale
+import java.util.UUID
 
 class RequestUrgencyActivity : AppCompatActivity() {
-    private lateinit var imagemSelecionadaUri: Uri
+    private var imagemSelecionadaUri: Uri? = null
     private lateinit var selecionarImagemLauncher: ActivityResultLauncher<Intent>
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private val LOCATION_PERMISSION_REQUEST_CODE = 1001
-
+    private var ultimaLocalizacao: String? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -54,7 +60,6 @@ class RequestUrgencyActivity : AppCompatActivity() {
         val editEmail = findViewById<EditText>(R.id.editEmail)
         val editCelular = findViewById<EditText>(R.id.editCelular)
         val editIdade = findViewById<EditText>(R.id.editIdade)
-
         // Inicialmente esconde os dois layouts
         layoutDadosUsuario.visibility = View.GONE
         layoutOutraPessoa.visibility = View.GONE
@@ -123,9 +128,15 @@ class RequestUrgencyActivity : AppCompatActivity() {
             ActivityResultContracts.StartActivityForResult()
         ) { result ->
             if (result.resultCode == Activity.RESULT_OK && result.data != null) {
-                imagemSelecionadaUri = result.data!!.data!!
-                Toast.makeText(this, "Imagem selecionada com sucesso!", Toast.LENGTH_SHORT).show()
-                // Aqui você pode exibir a imagem ou fazer o upload
+                imagemSelecionadaUri = result.data?.data
+                // Mostra um aviso informando que a funcionalidade está desativada no momento
+                AlertDialog.Builder(this)
+                    .setTitle("Envio de Imagem Indisponível")
+                    .setMessage("Este recurso estará disponível em uma versão futura do aplicativo.")
+                    .setPositiveButton("OK", null)
+                    .show()
+                // Opcional: você pode esconder a imagem ou desfazer a seleção
+                imagemSelecionadaUri = null
             }
         }
         val botaoFoto = findViewById<Button>(R.id.buttonEnviarImagem)
@@ -180,7 +191,12 @@ class RequestUrgencyActivity : AppCompatActivity() {
                 }
                 .show()
         }
+        val buttonEnviar = findViewById<Button>(R.id.buttonEnviarSolicitacao)
+        buttonEnviar.setOnClickListener {
+            enviarSolicitacaoParaFirebase()
+        }
     }
+    @SuppressLint("MissingPermission")
     private fun obterLocalizacaoAtual() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
             != PackageManager.PERMISSION_GRANTED
@@ -193,13 +209,16 @@ class RequestUrgencyActivity : AppCompatActivity() {
                 if (location != null) {
                     val latitude = location.latitude
                     val longitude = location.longitude
+                    ultimaLocalizacao = "$latitude, $longitude"
+
                     Toast.makeText(this, "📍 Latitude: $latitude\nLongitude: $longitude", Toast.LENGTH_LONG).show()
-                    // Aqui você pode armazenar essa localização
                 } else {
+                    ultimaLocalizacao = "Indefinida"
                     Toast.makeText(this, "Localização indisponível no momento", Toast.LENGTH_SHORT).show()
                 }
             }
             .addOnFailureListener {
+                ultimaLocalizacao = "Erro ao obter localização"
                 Toast.makeText(this, "Erro ao obter localização", Toast.LENGTH_SHORT).show()
             }
     }
@@ -217,5 +236,54 @@ class RequestUrgencyActivity : AppCompatActivity() {
         } else {
             Toast.makeText(this, "Permissão de localização negada", Toast.LENGTH_SHORT).show()
         }
+    }
+    private fun enviarSolicitacaoParaFirebase() {
+        val database = FirebaseDatabase.getInstance()
+        val ref = database.getReference("urgencias")
+        val radioGroup = findViewById<RadioGroup>(R.id.radioGroupOpcao)
+        val isParaMim = radioGroup.checkedRadioButtonId == R.id.radioEu
+        val nome: String
+        val idade: String
+        val email: String
+        val celular: String
+        val observacao: String?
+        if (isParaMim) {
+            nome = findViewById<EditText>(R.id.editNome).text.toString()
+            idade = findViewById<EditText>(R.id.editIdade).text.toString()
+            email = findViewById<EditText>(R.id.editEmail).text.toString()
+            celular = findViewById<EditText>(R.id.editCelular).text.toString()
+            observacao = null
+        } else {
+            nome = findViewById<EditText>(R.id.inputNomeOutro).text.toString()
+            idade = findViewById<EditText>(R.id.inputIdadeOutro).text.toString()
+            email = ""
+            celular = ""
+            observacao = findViewById<EditText>(R.id.inputObservacao).text.toString()
+        }
+        val tipoSelecionado = findViewById<Spinner>(R.id.spinnerGravidade).selectedItem.toString()
+        val tipoUrgencia = if (tipoSelecionado == "Outro") {
+            findViewById<EditText>(R.id.inputOutroTipo).text.toString()
+        } else {
+            tipoSelecionado
+        }
+        val dataHora = SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault()).format(Date())
+        val localizacao = ultimaLocalizacao ?: "Localização não disponível"
+        val dadosUrgencia = mapOf(
+            "nome" to nome,
+            "idade" to idade,
+            "email" to email,
+            "celular" to celular,
+            "observacao" to (observacao ?: ""),
+            "tipoUrgencia" to tipoUrgencia,
+            "dataHora" to dataHora,
+            "localizacao" to localizacao
+        )
+        ref.child("usuario").push().setValue(dadosUrgencia)
+            .addOnSuccessListener {
+                Toast.makeText(this, "Solicitação enviada com sucesso!", Toast.LENGTH_SHORT).show()
+            }
+            .addOnFailureListener {
+                Toast.makeText(this, "Erro ao enviar solicitação: ${it.message}", Toast.LENGTH_LONG).show()
+            }
     }
 }

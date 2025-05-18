@@ -50,6 +50,7 @@ dependencies {
     implementation(libs.firebase.common.ktx)
 
     implementation("com.google.android.gms:play-services-location:21.0.1")
+    implementation(libs.firebase.storage.ktx)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
