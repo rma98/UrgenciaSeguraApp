@@ -72,7 +72,6 @@ A abordagem metodológica combina **pesquisas quantitativas e qualitativas**, ut
 ## 🧪 Em desenvolvimento
 
 - [ ] Tela de histórico de solicitações
-- [ ] Integração com o sistema web do HUOC
 - [ ] Verificação de permissões e melhorias de UX
 
 ---
