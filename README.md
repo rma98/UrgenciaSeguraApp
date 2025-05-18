@@ -122,3 +122,9 @@ LinkedIn: *[LinkedIn](https://www.linkedin.com/in/robson-monteiro-de-albuquerque
 ![Status](https://img.shields.io/badge/Status-Em%20Desenvolvimento-yellow)
 ![License](https://img.shields.io/badge/Licença-MIT-blue)
 ![Plataforma](https://img.shields.io/badge/Plataforma-Android-green)
+
+---
+
+![Linguagem](https://img.shields.io/github/languages/top/Rma98/UrgenciaSeguraApp)
+![Último commit](https://img.shields.io/github/last-commit/Rma98/UrgenciaSeguraApp)
+![Repo size](https://img.shields.io/github/repo-size/Rma98/UrgenciaSeguraApp)
