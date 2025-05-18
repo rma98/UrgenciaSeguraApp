@@ -87,8 +87,6 @@ A abordagem metodológica combina **pesquisas quantitativas e qualitativas**, ut
 
 ## 📷 Capturas de Tela (em breve)
 
-> Aqui você poderá adicionar imagens da interface do aplicativo. Isso ajuda a ilustrar melhor a experiência do usuário.
-
 ---
 
 ## 📚 Palavras-chave
