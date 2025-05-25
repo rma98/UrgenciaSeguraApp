@@ -87,6 +87,7 @@ A abordagem metodológica combina **pesquisas quantitativas e qualitativas**, ut
 
 ## 📷 Capturas de Tela (em breve)
 
+![Tela inicial](assets/home.jpg)
 ---
 
 ## 📚 Palavras-chave
