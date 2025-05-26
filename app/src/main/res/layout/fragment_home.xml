@@ -10,8 +10,6 @@
     tools:context=".HomeFragment">
 
     <!-- Header com fundo arredondado e sombra -->
-
-    <!-- Mensagem destacada com fundo arredondado e sombra -->
     <LinearLayout
         android:id="@+id/headerLayout"
         android:layout_width="0dp"
@@ -42,6 +40,7 @@
             android:textStyle="bold" />
     </LinearLayout>
 
+    <!-- Mensagem destacada com fundo arredondado e sombra -->
     <TextView
         android:id="@+id/welcomeMessage"
         android:layout_width="0dp"
@@ -67,7 +66,7 @@
         android:padding="8dp"
         app:layout_constraintTop_toBottomOf="@id/welcomeMessage"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/footerText"
+        app:layout_constraintBottom_toTopOf="@id/footerContainer"
         android:layout_marginStart="16dp"
         android:background="@drawable/rounded_shadow_background">
 
@@ -111,7 +110,7 @@
         android:background="@drawable/rounded_shadow_background"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/footerText"
+        app:layout_constraintBottom_toTopOf="@id/footerContainer"
         android:layout_marginEnd="16dp"
         android:layout_marginTop="320dp"
         android:layout_marginBottom="16dp">
@@ -133,19 +132,27 @@
 
     </LinearLayout>
 
-    <!-- Footer -->
-    <TextView
-        android:id="@+id/footerText"
+    <!-- Footer com fundo arredondado e sombra -->
+    <LinearLayout
+        android:id="@+id/footerContainer"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Aplicativo desenvolvido para ajudar quem realmente precisa."
-        android:textColor="#264D73"
-        android:textSize="14sp"
-        android:gravity="center"
+        android:orientation="vertical"
+        android:background="@drawable/rounded_shadow_background"
         android:padding="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_margin="16dp" />
+        android:layout_margin="16dp">
+
+        <TextView
+            android:id="@+id/footerText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Aplicativo desenvolvido para ajudar quem realmente precisa."
+            android:textColor="#264D73"
+            android:textSize="14sp"
+            android:gravity="center" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

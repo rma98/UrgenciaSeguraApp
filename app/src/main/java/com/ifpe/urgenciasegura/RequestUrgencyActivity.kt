@@ -57,8 +57,8 @@ class RequestUrgencyActivity : AppCompatActivity() {
         val layoutDadosUsuario = findViewById<LinearLayout>(R.id.layoutDadosUsuario)
         // Referência aos campos do usuário
         val editNome = findViewById<EditText>(R.id.editNome)
-        val editEmail = findViewById<EditText>(R.id.editEmail)
-        val editCelular = findViewById<EditText>(R.id.editCelular)
+        //val editEmail = findViewById<EditText>(R.id.editEmail)
+        //val editCelular = findViewById<EditText>(R.id.editCelular)
         val editIdade = findViewById<EditText>(R.id.editIdade)
         // Inicialmente esconde os dois layouts
         layoutDadosUsuario.visibility = View.GONE
@@ -66,8 +66,8 @@ class RequestUrgencyActivity : AppCompatActivity() {
         // Dados do SharedPreferences
         val prefs = getSharedPreferences("UserPrefs", MODE_PRIVATE)
         val nome = prefs.getString("nome", "")
-        val email = prefs.getString("email", "")
-        val celular = prefs.getString("celular", "")
+        //val email = prefs.getString("email", "")
+        //val celular = prefs.getString("celular", "")
         val idade = prefs.getString("idade", "")
         // Força a seleção inicial do botão "Para mim"
         radioGroup.check(R.id.radioEu)
@@ -75,8 +75,8 @@ class RequestUrgencyActivity : AppCompatActivity() {
         layoutOutraPessoa.visibility = View.GONE
         layoutDadosUsuario.visibility = View.VISIBLE
         editNome.setText(nome)
-        editEmail.setText(email)
-        editCelular.setText(celular)
+        //editEmail.setText(email)
+        //editCelular.setText(celular)
         editIdade.setText(idade)
         // Listener
         radioGroup.setOnCheckedChangeListener { _, checkedId ->
@@ -87,17 +87,25 @@ class RequestUrgencyActivity : AppCompatActivity() {
                 layoutOutraPessoa.visibility = View.GONE
                 layoutDadosUsuario.visibility = View.VISIBLE
                 editNome.setText(nome)
-                editEmail.setText(email)
-                editCelular.setText(celular)
+                //editEmail.setText(email)
+                //editCelular.setText(celular)
                 editIdade.setText(idade)
             }
         }
         val spinnerGravidade = findViewById<Spinner>(R.id.spinnerGravidade)
         val editOutroTipo = findViewById<EditText>(R.id.inputOutroTipo)
+
         val opcoes = listOf("Selecione a gravidade", "Acidente", "Mal-estar", "Desmaio", "Queimadura", "Sangramento", "Outro")
-        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, opcoes)
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+
+        val adapter = ArrayAdapter(
+            this,
+            R.layout.spinner_item,      // layout personalizado
+            R.id.textSpinnerItem,       // ID do TextView no layout
+            opcoes                      // sua lista de opções
+        )
+
         spinnerGravidade.adapter = adapter
+
         spinnerGravidade.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
                 val itemSelecionado = parent.getItemAtPosition(position).toString()
@@ -108,10 +116,12 @@ class RequestUrgencyActivity : AppCompatActivity() {
                     editOutroTipo.visibility = View.GONE
                 }
             }
+
             override fun onNothingSelected(parent: AdapterView<*>) {
                 // Nada aqui por enquanto
             }
         }
+        /*
         val botaoMostrarAviso = findViewById<Button>(R.id.buttonMostrarAviso)
         val avisoCamera = findViewById<TextView>(R.id.avisoCamera)
         botaoMostrarAviso.setOnClickListener {
@@ -123,6 +133,7 @@ class RequestUrgencyActivity : AppCompatActivity() {
                 botaoMostrarAviso.text = "ℹ️ Aviso sobre envio de imagem"
             }
         }
+        */
         // Inicializa o seletor de imagens
         selecionarImagemLauncher = registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()
@@ -139,12 +150,12 @@ class RequestUrgencyActivity : AppCompatActivity() {
                 imagemSelecionadaUri = null
             }
         }
-        val botaoFoto = findViewById<Button>(R.id.buttonEnviarImagem)
-        botaoFoto.setOnClickListener {
-            val intent = Intent(Intent.ACTION_PICK)
-            intent.type = "image/*"
-            selecionarImagemLauncher.launch(intent)
-        }
+        //val botaoFoto = findViewById<Button>(R.id.buttonEnviarImagem)
+        //botaoFoto.setOnClickListener {
+            //val intent = Intent(Intent.ACTION_PICK)
+            //intent.type = "image/*"
+            //selecionarImagemLauncher.launch(intent)
+        //}
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
         val botaoLocalizacao = findViewById<Button>(R.id.buttonLocalizacao)
         botaoLocalizacao.setOnClickListener {
@@ -240,44 +251,43 @@ class RequestUrgencyActivity : AppCompatActivity() {
     private fun enviarSolicitacaoParaFirebase() {
         val database = FirebaseDatabase.getInstance()
         val ref = database.getReference("urgencias")
+
         val radioGroup = findViewById<RadioGroup>(R.id.radioGroupOpcao)
         val isParaMim = radioGroup.checkedRadioButtonId == R.id.radioEu
+
         val nome: String
         val idade: String
-        val email: String
-        val celular: String
-        val observacao: String?
+        val observacao: String
+
         if (isParaMim) {
             nome = findViewById<EditText>(R.id.editNome).text.toString()
             idade = findViewById<EditText>(R.id.editIdade).text.toString()
-            email = findViewById<EditText>(R.id.editEmail).text.toString()
-            celular = findViewById<EditText>(R.id.editCelular).text.toString()
-            observacao = null
+            observacao = findViewById<EditText>(R.id.inputObservacaoUsuario).text.toString()
         } else {
             nome = findViewById<EditText>(R.id.inputNomeOutro).text.toString()
             idade = findViewById<EditText>(R.id.inputIdadeOutro).text.toString()
-            email = ""
-            celular = ""
             observacao = findViewById<EditText>(R.id.inputObservacao).text.toString()
         }
+
         val tipoSelecionado = findViewById<Spinner>(R.id.spinnerGravidade).selectedItem.toString()
         val tipoUrgencia = if (tipoSelecionado == "Outro") {
             findViewById<EditText>(R.id.inputOutroTipo).text.toString()
         } else {
             tipoSelecionado
         }
+
         val dataHora = SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault()).format(Date())
         val localizacao = ultimaLocalizacao ?: "Localização não disponível"
+
         val dadosUrgencia = mapOf(
             "nome" to nome,
             "idade" to idade,
-            "email" to email,
-            "celular" to celular,
-            "observacao" to (observacao ?: ""),
+            "observacao" to observacao,
             "tipoUrgencia" to tipoUrgencia,
             "dataHora" to dataHora,
             "localizacao" to localizacao
         )
+
         ref.child("usuario").push().setValue(dadosUrgencia)
             .addOnSuccessListener {
                 Toast.makeText(this, "Solicitação enviada com sucesso!", Toast.LENGTH_SHORT).show()

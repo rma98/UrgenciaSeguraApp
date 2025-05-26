@@ -21,64 +21,87 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
+        <!-- Bloco único com fundo arredondado e sombra -->
         <LinearLayout
-            android:id="@+id/logoLayout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:layout_marginBottom="6dp">
-
-            <ImageView
-                android:layout_width="80dp"
-                android:layout_height="100dp"
-                android:src="@drawable/urgenciasegura"
-                android:contentDescription="Logo" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Urgência Segura"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:textColor="#264D73"
-                android:layout_marginStart="8dp" />
-        </LinearLayout>
-
-        <!-- Título -->
-        <TextView
-            android:id="@+id/textPergunta"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Quem precisa de urgência?"
-            android:textSize="18sp"
-            android:textColor="#264D73"
-            android:textStyle="bold"
-            android:layout_marginBottom="8dp" />
-
-        <!-- Opções de escolha -->
-        <RadioGroup
-            android:id="@+id/radioGroupOpcao"
+            android:id="@+id/blocoUnicoLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginBottom="8dp">
+            android:orientation="vertical"
+            android:background="@drawable/rounded_shadow_background"
+            android:padding="24dp"
+            android:layout_margin="16dp">
 
-            <RadioButton
-                android:id="@+id/radioEu"
+            <!-- Header com logo e nome -->
+            <!--
+            <LinearLayout
+                android:id="@+id/headerLayoutRequest"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/urgenciasegura"
+                    android:contentDescription="Logo" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Urgência Segura"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    android:textColor="#264D73"
+                    android:layout_marginStart="8dp" />
+            </LinearLayout>
+            -->
+
+            <!-- Pergunta destacada -->
+            <TextView
+                android:id="@+id/textPergunta"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="Quem precisa de urgência?"
+                android:textSize="18sp"
                 android:textColor="#264D73"
-                android:text="Para mim" />
+                android:textStyle="bold"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp" />
 
-            <RadioButton
-                android:id="@+id/radioOutro"
-                android:layout_width="wrap_content"
+            <!-- Opções de escolha -->
+            <RadioGroup
+                android:id="@+id/radioGroupOpcao"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Para outra pessoa"
-                android:textColor="#264D73"
-                android:layout_marginStart="24dp" />
-        </RadioGroup>
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/radioEu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#264D73"
+                    android:text="Para mim" />
+
+                <RadioButton
+                    android:id="@+id/radioOutro"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Para outra pessoa"
+                    android:textColor="#264D73"
+                    android:layout_marginStart="24dp" />
+            </RadioGroup>
+
+            <Button
+                android:id="@+id/buttonVoltarHome"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Voltar"
+                android:backgroundTint="#264D73"
+                android:textColor="#FFFFFF"
+                android:layout_marginTop="16dp"/>
+
+        </LinearLayout>
 
         <!-- Dados do próprio usuário (visível somente se selecionado "para mim") -->
         <LinearLayout
@@ -86,40 +109,89 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:background="@drawable/card_background"
+            android:background="@drawable/rounded_shadow_background"
             android:padding="16dp"
             android:elevation="4dp"
             android:layout_margin="16dp"
-            android:checked="true"
             android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nome:"
+                android:textColor="#264D73" />
 
             <EditText
                 android:id="@+id/editNome"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Nome"
+                android:hint="Digite seu nome"
+                android:textColorHint="#000000"
+                android:textColor="#000000"
                 android:layout_marginBottom="8dp" />
+
+            <!--
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Email:"
+                android:textColor="#264D73" />
 
             <EditText
                 android:id="@+id/editEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Email"
+                android:hint="Digite seu email"
+                android:textColorHint="#000000"
+                android:textColor="#000000"
                 android:layout_marginBottom="8dp" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Celular:"
+                android:textColor="#264D73" />
 
             <EditText
                 android:id="@+id/editCelular"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Celular"
+                android:hint="Digite seu celular"
+                android:textColorHint="#000000"
+                android:textColor="#000000"
                 android:layout_marginBottom="8dp" />
+                -->
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Idade:"
+                android:textColor="#264D73" />
 
             <EditText
                 android:id="@+id/editIdade"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Idade"
+                android:hint="Digite sua idade"
+                android:textColorHint="#000000"
+                android:textColor="#000000"
                 android:inputType="number"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Observação:"
+                android:textColor="#264D73" />
+
+            <EditText
+                android:id="@+id/inputObservacaoUsuario"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Observação (opcional)"
+                android:textColorHint="#000000"
+                android:textColor="#000000"
                 android:layout_marginBottom="8dp" />
         </LinearLayout>
 
@@ -129,32 +201,56 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:background="@drawable/card_background"
+            android:background="@drawable/rounded_shadow_background"
             android:padding="16dp"
             android:elevation="4dp"
             android:layout_margin="16dp"
             android:visibility="gone">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nome da pessoa:"
+                android:textColor="#264D73" />
+
             <EditText
                 android:id="@+id/inputNomeOutro"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Nome da pessoa"
+                android:hint="Digite o nome da pessoa"
+                android:textColorHint="#000000"
+                android:textColor="#000000"
                 android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Idade:"
+                android:textColor="#264D73" />
 
             <EditText
                 android:id="@+id/inputIdadeOutro"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Idade"
+                android:hint="Digite a idade"
+                android:textColorHint="#000000"
+                android:textColor="#000000"
                 android:inputType="number"
                 android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Observação:"
+                android:textColor="#264D73" />
 
             <EditText
                 android:id="@+id/inputObservacao"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Observação (opcional)"
+                android:textColorHint="#000000"
+                android:textColor="#000000"
                 android:layout_marginBottom="8dp" />
         </LinearLayout>
 
@@ -163,7 +259,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:background="@drawable/card_background"
+            android:background="@drawable/rounded_shadow_background"
             android:padding="16dp"
             android:elevation="4dp"
             android:layout_margin="8dp">
@@ -189,10 +285,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Descreva o tipo de urgência"
+                android:textColorHint="#000000"
+                android:textColor="#000000"
                 android:visibility="gone"
                 android:layout_marginBottom="16dp" />
         </LinearLayout>
 
+        <!--
         <Button
             android:id="@+id/buttonMostrarAviso"
             android:layout_width="wrap_content"
@@ -214,6 +313,7 @@
             android:layout_marginBottom="8dp"
             android:background="#FFF8E1"
             android:visibility="gone" />
+         -->
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -223,6 +323,7 @@
             android:layout_marginBottom="16dp"
             android:weightSum="2">
 
+            <!--
             <Button
                 android:id="@+id/buttonEnviarImagem"
                 android:layout_width="0dp"
@@ -232,16 +333,8 @@
                 android:backgroundTint="#49A6E9"
                 android:textColor="#FFFFFF"
                 android:layout_marginEnd="4dp"/>
+                -->
 
-            <Button
-                android:id="@+id/buttonLocalizacao"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="📍 Local"
-                android:backgroundTint="#49A6E9"
-                android:textColor="#FFFFFF"
-                android:layout_marginStart="4dp"/>
         </LinearLayout>
 
         <!-- Linha com os botões: Voltar e Enviar Solicitação -->
@@ -253,14 +346,14 @@
             android:weightSum="2">
 
             <Button
-                android:id="@+id/buttonVoltarHome"
+                android:id="@+id/buttonLocalizacao"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Voltar"
-                android:backgroundTint="#264D73"
+                android:text="📍 Local"
+                android:backgroundTint="#49A6E9"
                 android:textColor="#FFFFFF"
-                android:layout_marginEnd="8dp"/>
+                android:layout_marginStart="4dp"/>
 
             <Button
                 android:id="@+id/buttonEnviarSolicitacao"
