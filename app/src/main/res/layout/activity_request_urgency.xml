@@ -92,6 +92,7 @@
                     android:layout_marginStart="24dp" />
             </RadioGroup>
 
+            <!--
             <Button
                 android:id="@+id/buttonVoltarHome"
                 android:layout_width="match_parent"
@@ -100,6 +101,7 @@
                 android:backgroundTint="#264D73"
                 android:textColor="#FFFFFF"
                 android:layout_marginTop="16dp"/>
+                -->
 
         </LinearLayout>
 
@@ -145,7 +147,7 @@
                 android:textColorHint="#000000"
                 android:textColor="#000000"
                 android:layout_marginBottom="8dp" />
-
+                -->
 
             <TextView
                 android:layout_width="wrap_content"
@@ -161,7 +163,7 @@
                 android:textColorHint="#000000"
                 android:textColor="#000000"
                 android:layout_marginBottom="8dp" />
-                -->
+
 
             <TextView
                 android:layout_width="wrap_content"
@@ -236,6 +238,21 @@
                 android:textColorHint="#000000"
                 android:textColor="#000000"
                 android:inputType="number"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Celular da outra pessoa:"
+                android:textColor="#264D73" />
+
+            <EditText
+                android:id="@+id/inputCelularOutro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Digite o celular"
+                android:textColorHint="#000000"
+                android:textColor="#000000"
                 android:layout_marginBottom="8dp" />
 
             <TextView

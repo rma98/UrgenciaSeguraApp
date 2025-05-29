@@ -56,40 +56,29 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_margin="16dp" />
 
-    <!-- Botões ao lado ESQUERDO com ícone "hamburger" para abrir/fechar -->
     <LinearLayout
         android:id="@+id/buttonContainer"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:gravity="top|center_horizontal"
-        android:padding="8dp"
+        android:gravity="center_horizontal"
+        android:padding="16dp"
         app:layout_constraintTop_toBottomOf="@id/welcomeMessage"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/footerContainer"
-        android:layout_marginStart="16dp"
-        android:background="@drawable/rounded_shadow_background">
+        android:layout_marginTop="24dp"
+        android:minHeight="200dp"
+        android:minWidth="280dp">
 
-        <!-- Ícone burger -->
-        <ImageButton
-            android:id="@+id/buttonToggle"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:src="@drawable/ic_menu"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:contentDescription="Abrir/fechar menu"
-            android:layout_marginBottom="16dp" />
-
-        <!-- Botões empilhados, começam escondidos -->
-        <Button
+    <Button
             android:id="@+id/buttonLogin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Login"
             android:backgroundTint="#49A6E9"
             android:textColor="#FFFFFF"
-            android:layout_marginBottom="8dp"
-            android:visibility="gone" />
+            android:layout_marginBottom="12dp" />
 
         <Button
             android:id="@+id/buttonCadastro"
@@ -97,10 +86,10 @@
             android:layout_height="wrap_content"
             android:text="Cadastro"
             android:backgroundTint="#49A6E9"
-            android:textColor="#FFFFFF"
-            android:visibility="gone" />
+            android:textColor="#FFFFFF" />
     </LinearLayout>
 
+    <!--
     <LinearLayout
         android:id="@+id/rightContainer"
         android:layout_width="wrap_content"
@@ -131,6 +120,7 @@
             android:src="@drawable/ic_logo" />
 
     </LinearLayout>
+    -->
 
     <!-- Footer com fundo arredondado e sombra -->
     <LinearLayout

@@ -2,9 +2,7 @@ package com.ifpe.urgenciasegura
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import android.widget.Button
-import android.widget.ImageButton
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
@@ -13,8 +11,6 @@ class ScreenHomeActivity : AppCompatActivity() {
 
     private lateinit var buttonSolicitarUrgencia: Button
     private lateinit var buttonLogout: Button
-    private lateinit var buttonToggle: ImageButton
-    private var isMenuVisible = false  // Controle de visibilidade do menu
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,19 +26,6 @@ class ScreenHomeActivity : AppCompatActivity() {
         // Referências aos botões
         buttonSolicitarUrgencia = findViewById(R.id.buttonSolicitarUrgencia)
         buttonLogout = findViewById(R.id.buttonLogout)
-        buttonToggle = findViewById(R.id.buttonToggle)
-
-        // Botão de toggle (hamburger) para abrir/fechar o menu
-        buttonToggle.setOnClickListener {
-            isMenuVisible = !isMenuVisible
-            if (isMenuVisible) {
-                buttonSolicitarUrgencia.visibility = View.VISIBLE
-                buttonLogout.visibility = View.VISIBLE
-            } else {
-                buttonSolicitarUrgencia.visibility = View.GONE
-                buttonLogout.visibility = View.GONE
-            }
-        }
 
         // Ação do botão Solicitar Urgência
         buttonSolicitarUrgencia.setOnClickListener {

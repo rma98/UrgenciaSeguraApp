@@ -46,19 +46,21 @@ class RequestUrgencyActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        /*
         val botaoVoltarHome = findViewById<Button>(R.id.buttonVoltarHome)
         botaoVoltarHome.setOnClickListener {
             val intent = Intent(this, ScreenHomeActivity::class.java)
             startActivity(intent)
             finish()
         }
+        */
         val radioGroup = findViewById<RadioGroup>(R.id.radioGroupOpcao)
         val layoutOutraPessoa = findViewById<LinearLayout>(R.id.layoutOutraPessoa)
         val layoutDadosUsuario = findViewById<LinearLayout>(R.id.layoutDadosUsuario)
         // Referência aos campos do usuário
         val editNome = findViewById<EditText>(R.id.editNome)
         //val editEmail = findViewById<EditText>(R.id.editEmail)
-        //val editCelular = findViewById<EditText>(R.id.editCelular)
+        val editCelular = findViewById<EditText>(R.id.editCelular)
         val editIdade = findViewById<EditText>(R.id.editIdade)
         // Inicialmente esconde os dois layouts
         layoutDadosUsuario.visibility = View.GONE
@@ -67,7 +69,7 @@ class RequestUrgencyActivity : AppCompatActivity() {
         val prefs = getSharedPreferences("UserPrefs", MODE_PRIVATE)
         val nome = prefs.getString("nome", "")
         //val email = prefs.getString("email", "")
-        //val celular = prefs.getString("celular", "")
+        val celular = prefs.getString("celular", "")
         val idade = prefs.getString("idade", "")
         // Força a seleção inicial do botão "Para mim"
         radioGroup.check(R.id.radioEu)
@@ -76,7 +78,7 @@ class RequestUrgencyActivity : AppCompatActivity() {
         layoutDadosUsuario.visibility = View.VISIBLE
         editNome.setText(nome)
         //editEmail.setText(email)
-        //editCelular.setText(celular)
+        editCelular.setText(celular)
         editIdade.setText(idade)
         // Listener
         radioGroup.setOnCheckedChangeListener { _, checkedId ->
@@ -88,7 +90,7 @@ class RequestUrgencyActivity : AppCompatActivity() {
                 layoutDadosUsuario.visibility = View.VISIBLE
                 editNome.setText(nome)
                 //editEmail.setText(email)
-                //editCelular.setText(celular)
+                editCelular.setText(celular)
                 editIdade.setText(idade)
             }
         }
@@ -257,15 +259,18 @@ class RequestUrgencyActivity : AppCompatActivity() {
 
         val nome: String
         val idade: String
+        val celular: String
         val observacao: String
 
         if (isParaMim) {
             nome = findViewById<EditText>(R.id.editNome).text.toString()
             idade = findViewById<EditText>(R.id.editIdade).text.toString()
+            celular = findViewById<EditText>(R.id.editCelular).text.toString()
             observacao = findViewById<EditText>(R.id.inputObservacaoUsuario).text.toString()
         } else {
             nome = findViewById<EditText>(R.id.inputNomeOutro).text.toString()
             idade = findViewById<EditText>(R.id.inputIdadeOutro).text.toString()
+            celular = findViewById<EditText>(R.id.inputCelularOutro).text.toString()
             observacao = findViewById<EditText>(R.id.inputObservacao).text.toString()
         }
 
@@ -282,6 +287,7 @@ class RequestUrgencyActivity : AppCompatActivity() {
         val dadosUrgencia = mapOf(
             "nome" to nome,
             "idade" to idade,
+            "celular" to celular,
             "observacao" to observacao,
             "tipoUrgencia" to tipoUrgencia,
             "dataHora" to dataHora,
