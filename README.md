@@ -43,14 +43,16 @@ A abordagem metodológica combina **pesquisas quantitativas e qualitativas**, ut
    - Redirecionamento automático para a tela de login
 4. **Login**
    - Verificação via Firebase Authentication
+   - Opção "Esqueceu a senha" para recuperação
    - Redirecionamento para tela principal
 5. **Tela Principal**
    - [ ] Botão "Solicitar Urgência"
-   - [ ] Botão "Logout"
+   - [ ] Botão "Sair"
 6. **Tela de Solicitação de Urgência**
    - Envio de dados para o Firebase
    - Captura de localização
-   - Upload de imagem (com aviso se bloqueado no plano gratuito)
+   - Opção de tirar uma foto
+   - Seleção do tipo de atendimento: SAMU ou Defesa Civil
 
 ---
 
@@ -60,12 +62,13 @@ A abordagem metodológica combina **pesquisas quantitativas e qualitativas**, ut
 - [x] Tela de boas-vindas com opções de login/cadastro
 - [x] Cadastro de usuários com Firebase Authentication
 - [x] Login de usuários com Firebase Authentication
-- [x] Tela principal com opções de Solicitar Urgência ou Logout
+- [x] Opção "Esqueceu a senha" na tela de login
+- [x] Tela principal com opções de Solicitar Urgência ou Sair
 - [x] Tela de solicitação de urgência
 - [x] Captura de localização em tempo real
+- [x] Opção de tirar foto
 - [x] Suporte à solicitação para terceiros
 - [x] Validação de campos obrigatórios
-- [x] Upload de imagem com aviso amigável caso esteja bloqueado
 
 ---
 
@@ -98,7 +101,7 @@ A abordagem metodológica combina **pesquisas quantitativas e qualitativas**, ut
 
 ## 📦 Download do App
 
-➡️ [Clique aqui para baixar o UrgenciaSegura.apk](https://github.com/robsonalbuquerquedev/UrgenciaSeguraApp/releases/download/v1.02-beta/UrgenciaSegura.apk)
+➡️ [Clique aqui para baixar o UrgenciaSegura.apk](https://github.com/robsonalbuquerquedev/UrgenciaSeguraApp/releases/download/v1.03-beta/UrgenciaSegura.apk)
 
 ---
 
