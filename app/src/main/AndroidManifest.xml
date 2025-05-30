@@ -2,11 +2,22 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
-        android:maxSdkVersion="28"/>
+    <!-- Câmera é opcional: bom para não restringir a instalação em aparelhos sem câmera -->
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+
+    <!-- Permissão de Câmera -->
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <!-- Permissões de armazenamento (compatível com versões mais antigas) -->
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="28" />
+
+    <!-- Permissões de localização (já que seu app usa) -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -18,6 +29,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.UrgenciaSegura"
         tools:targetApi="31">
+        <activity
+            android:name=".ConfirmUrgencyActivity"
+            android:exported="false" />
         <activity
             android:name=".RequestUrgencyActivity"
             android:exported="false" />

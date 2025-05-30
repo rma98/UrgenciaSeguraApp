@@ -1,42 +1,24 @@
 package com.ifpe.urgenciasegura
 
-import android.Manifest
-import android.annotation.SuppressLint
-import android.app.Activity
-import android.app.AlertDialog
-import android.content.ActivityNotFoundException
 import android.content.Intent
-import android.content.pm.PackageManager
-import android.icu.text.SimpleDateFormat
-import android.location.Location
-import android.net.Uri
 import android.os.Bundle
-import android.os.Environment
+import android.view.View
+import android.widget.Button
+import android.widget.EditText
+import android.widget.LinearLayout
+import android.widget.RadioGroup
+import android.widget.Spinner
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import android.view.View
-import android.widget.*
-import android.widget.Toast
-import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.app.ActivityCompat
-import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.location.LocationServices
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.storage.FirebaseStorage
-import java.util.Date
-import java.util.Locale
-import java.util.UUID
 
 class RequestUrgencyActivity : AppCompatActivity() {
-    private var imagemSelecionadaUri: Uri? = null
-    private lateinit var selecionarImagemLauncher: ActivityResultLauncher<Intent>
-    private lateinit var fusedLocationClient: FusedLocationProviderClient
-    private val LOCATION_PERMISSION_REQUEST_CODE = 1001
-    private var ultimaLocalizacao: String? = null
+    //private var imagemSelecionadaUri: Uri? = null
+    //private lateinit var selecionarImagemLauncher: ActivityResultLauncher<Intent>
+    //private lateinit var fusedLocationClient: FusedLocationProviderClient
+    //private val LOCATION_PERMISSION_REQUEST_CODE = 1001
+    //private var ultimaLocalizacao: String? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -46,14 +28,12 @@ class RequestUrgencyActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        /*
         val botaoVoltarHome = findViewById<Button>(R.id.buttonVoltarHome)
         botaoVoltarHome.setOnClickListener {
             val intent = Intent(this, ScreenHomeActivity::class.java)
             startActivity(intent)
             finish()
         }
-        */
         val radioGroup = findViewById<RadioGroup>(R.id.radioGroupOpcao)
         val layoutOutraPessoa = findViewById<LinearLayout>(R.id.layoutOutraPessoa)
         val layoutDadosUsuario = findViewById<LinearLayout>(R.id.layoutDadosUsuario)
@@ -94,6 +74,37 @@ class RequestUrgencyActivity : AppCompatActivity() {
                 editIdade.setText(idade)
             }
         }
+        val buttonContinuar: Button = findViewById(R.id.buttonContinuar)
+        buttonContinuar.setOnClickListener {
+            val radioGroup = findViewById<RadioGroup>(R.id.radioGroupOpcao)
+            val isParaMim = radioGroup.checkedRadioButtonId == R.id.radioEu
+
+            val nome: String
+            val idade: String
+            val celular: String
+            val observacao: String
+
+            if (isParaMim) {
+                nome = findViewById<EditText>(R.id.editNome).text.toString()
+                idade = findViewById<EditText>(R.id.editIdade).text.toString()
+                celular = findViewById<EditText>(R.id.editCelular).text.toString()
+                observacao = findViewById<EditText>(R.id.inputObservacaoUsuario).text.toString()
+            } else {
+                nome = findViewById<EditText>(R.id.inputNomeOutro).text.toString()
+                idade = findViewById<EditText>(R.id.inputIdadeOutro).text.toString()
+                celular = findViewById<EditText>(R.id.inputCelularOutro).text.toString()
+                observacao = findViewById<EditText>(R.id.inputObservacao).text.toString()
+            }
+            // Criar e iniciar Intent
+            val intent = Intent(this, ConfirmUrgencyActivity::class.java)
+            intent.putExtra("nome", nome)
+            intent.putExtra("idade", idade)
+            intent.putExtra("celular", celular)
+            intent.putExtra("observacao", observacao)
+            startActivity(intent)
+            finish()
+        }
+        /*
         val spinnerGravidade = findViewById<Spinner>(R.id.spinnerGravidade)
         val editOutroTipo = findViewById<EditText>(R.id.inputOutroTipo)
 
@@ -105,24 +116,20 @@ class RequestUrgencyActivity : AppCompatActivity() {
             R.id.textSpinnerItem,       // ID do TextView no layout
             opcoes                      // sua lista de opções
         )
-
         spinnerGravidade.adapter = adapter
-
         spinnerGravidade.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
                 val itemSelecionado = parent.getItemAtPosition(position).toString()
-
                 if (itemSelecionado == "Outro") {
                     editOutroTipo.visibility = View.VISIBLE
                 } else {
                     editOutroTipo.visibility = View.GONE
                 }
             }
-
             override fun onNothingSelected(parent: AdapterView<*>) {
                 // Nada aqui por enquanto
             }
-        }
+        }*/
         /*
         val botaoMostrarAviso = findViewById<Button>(R.id.buttonMostrarAviso)
         val avisoCamera = findViewById<TextView>(R.id.avisoCamera)
@@ -136,7 +143,7 @@ class RequestUrgencyActivity : AppCompatActivity() {
             }
         }
         */
-        // Inicializa o seletor de imagens
+        /*Inicializa o seletor de imagens
         selecionarImagemLauncher = registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()
         ) { result ->
@@ -151,14 +158,14 @@ class RequestUrgencyActivity : AppCompatActivity() {
                 // Opcional: você pode esconder a imagem ou desfazer a seleção
                 imagemSelecionadaUri = null
             }
-        }
+        }*/
         //val botaoFoto = findViewById<Button>(R.id.buttonEnviarImagem)
         //botaoFoto.setOnClickListener {
             //val intent = Intent(Intent.ACTION_PICK)
             //intent.type = "image/*"
             //selecionarImagemLauncher.launch(intent)
         //}
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
+        /*fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
         val botaoLocalizacao = findViewById<Button>(R.id.buttonLocalizacao)
         botaoLocalizacao.setOnClickListener {
             AlertDialog.Builder(this)
@@ -203,13 +210,13 @@ class RequestUrgencyActivity : AppCompatActivity() {
                     dialog.dismiss()
                 }
                 .show()
-        }
-        val buttonEnviar = findViewById<Button>(R.id.buttonEnviarSolicitacao)
+        }*/
+        /*val buttonEnviar = findViewById<Button>(R.id.buttonEnviarSolicitacao)
         buttonEnviar.setOnClickListener {
             enviarSolicitacaoParaFirebase()
-        }
+        }*/
     }
-    @SuppressLint("MissingPermission")
+    /*@SuppressLint("MissingPermission")
     private fun obterLocalizacaoAtual() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
             != PackageManager.PERMISSION_GRANTED
@@ -301,5 +308,5 @@ class RequestUrgencyActivity : AppCompatActivity() {
             .addOnFailureListener {
                 Toast.makeText(this, "Erro ao enviar solicitação: ${it.message}", Toast.LENGTH_LONG).show()
             }
-    }
+    }*/
 }

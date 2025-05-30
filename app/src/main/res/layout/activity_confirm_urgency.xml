@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    tools:context=".ConfirmUrgencyActivity">
+
+    <!-- Conteúdo centralizado -->
+    <LinearLayout
+        android:id="@+id/verticalLayoutConfirm"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:padding="24dp"
+        android:gravity="center"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- Bloco único com fundo arredondado e sombra -->
+
+        <!-- Linha com os botões: Voltar e Enviar Solicitação -->
+        <LinearLayout
+            android:id="@+id/blocoUnicoLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:background="@drawable/rounded_shadow_background"
+            android:orientation="vertical"
+            android:padding="24dp">
+
+            <!-- Header com logo e nome -->
+            <LinearLayout
+                android:id="@+id/headerLayoutConfirm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="100dp"
+                    android:contentDescription="Logo"
+                    android:src="@drawable/urgenciasegura" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="Urgência Segura"
+                    android:textColor="#264D73"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <!-- Pergunta destacada -->
+            <TextView
+                android:id="@+id/textServico"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"
+                android:text="Qual serviço deseja acionar?"
+                android:textColor="#264D73"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <!-- Opções de escolha -->
+            <RadioGroup
+                android:id="@+id/radioGroupServico"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/radioSamu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="SAMU"
+                    android:textColor="#264D73" />
+
+                <RadioButton
+                    android:id="@+id/radioDefesaCivil"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:text="Defesa Civil"
+                    android:textColor="#264D73" />
+            </RadioGroup>
+
+            <!-- Spinner para tipo de urgência -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Tipo de Urgência:"
+                android:textColor="#264D73" />
+
+            <Spinner
+                android:id="@+id/spinnerTipoUrgencia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp" />
+
+            <EditText
+                android:id="@+id/editOutroTipoUrgencia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Digite o tipo de urgência"
+                android:textColor="#000000"
+                android:textColorHint="#000000"
+                android:visibility="gone" />
+
+            <!-- Botão Localização -->
+            <Button
+                android:id="@+id/buttonLocalizacao"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:backgroundTint="#264D73"
+                android:text="📍 Localização"
+                android:textColor="#FFFFFF" />
+
+            <Button
+                android:id="@+id/buttonTirarFoto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:backgroundTint="#264D73"
+                android:text="📸 Tirar Foto"
+                android:textColor="#FFFFFF" />
+
+            <ImageView
+                android:id="@+id/imageViewFoto"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="16dp"
+                android:scaleType="centerCrop"
+                android:contentDescription="Foto tirada" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:weightSum="2">
+
+            <Button
+                android:id="@+id/buttonVoltar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Voltar"
+                android:backgroundTint="#264D73"
+                android:textColor="#FFFFFF"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"/>
+
+            <Button
+                android:id="@+id/buttonEnviar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Enviar Solicitação"
+                android:backgroundTint="#264D73"
+                android:textColor="#FFFFFF"
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="8dp"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

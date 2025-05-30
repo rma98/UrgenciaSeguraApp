@@ -32,7 +32,6 @@
             android:layout_margin="16dp">
 
             <!-- Header com logo e nome -->
-            <!--
             <LinearLayout
                 android:id="@+id/headerLayoutRequest"
                 android:layout_width="match_parent"
@@ -55,7 +54,6 @@
                     android:textColor="#264D73"
                     android:layout_marginStart="8dp" />
             </LinearLayout>
-            -->
 
             <!-- Pergunta destacada -->
             <TextView
@@ -91,18 +89,6 @@
                     android:textColor="#264D73"
                     android:layout_marginStart="24dp" />
             </RadioGroup>
-
-            <!--
-            <Button
-                android:id="@+id/buttonVoltarHome"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Voltar"
-                android:backgroundTint="#264D73"
-                android:textColor="#FFFFFF"
-                android:layout_marginTop="16dp"/>
-                -->
-
         </LinearLayout>
 
         <!-- Dados do próprio usuário (visível somente se selecionado "para mim") -->
@@ -132,23 +118,6 @@
                 android:textColor="#000000"
                 android:layout_marginBottom="8dp" />
 
-            <!--
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Email:"
-                android:textColor="#264D73" />
-
-            <EditText
-                android:id="@+id/editEmail"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Digite seu email"
-                android:textColorHint="#000000"
-                android:textColor="#000000"
-                android:layout_marginBottom="8dp" />
-                -->
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -163,7 +132,6 @@
                 android:textColorHint="#000000"
                 android:textColor="#000000"
                 android:layout_marginBottom="8dp" />
-
 
             <TextView
                 android:layout_width="wrap_content"
@@ -271,90 +239,7 @@
                 android:layout_marginBottom="8dp" />
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/layoutGravidade"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@drawable/rounded_shadow_background"
-            android:padding="16dp"
-            android:elevation="4dp"
-            android:layout_margin="8dp">
-
-            <!-- Gravidade da urgência -->
-            <TextView
-                android:id="@+id/textGravidade"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:text="Selecione a gravidade:"
-                android:textColor="#264D73"
-                android:textSize="16sp" />
-
-            <Spinner
-                android:id="@+id/spinnerGravidade"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp" />
-
-            <EditText
-                android:id="@+id/inputOutroTipo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Descreva o tipo de urgência"
-                android:textColorHint="#000000"
-                android:textColor="#000000"
-                android:visibility="gone"
-                android:layout_marginBottom="16dp" />
-        </LinearLayout>
-
-        <!--
-        <Button
-            android:id="@+id/buttonMostrarAviso"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="ℹ️ Aviso sobre envio de imagem"
-            android:textColor="#FFFFFF"
-            android:backgroundTint="#FFA000"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="8dp" />
-
-        <TextView
-            android:id="@+id/avisoCamera"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="⚠️ No momento, só é possível enviar fotos já salvas na galeria do seu telefone. A função de tirar foto pelo app estará disponível em uma versão futura."
-            android:textColor="#FF0000"
-            android:textSize="14sp"
-            android:padding="8dp"
-            android:layout_marginBottom="8dp"
-            android:background="#FFF8E1"
-            android:visibility="gone" />
-         -->
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center"
-            android:layout_marginBottom="16dp"
-            android:weightSum="2">
-
-            <!--
-            <Button
-                android:id="@+id/buttonEnviarImagem"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="🖼️ Galeria"
-                android:backgroundTint="#49A6E9"
-                android:textColor="#FFFFFF"
-                android:layout_marginEnd="4dp"/>
-                -->
-
-        </LinearLayout>
-
-        <!-- Linha com os botões: Voltar e Enviar Solicitação -->
+        <!-- Linha com os botões: Voltar e Continuar -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -363,23 +248,25 @@
             android:weightSum="2">
 
             <Button
-                android:id="@+id/buttonLocalizacao"
+                android:id="@+id/buttonVoltarHome"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="📍 Local"
-                android:backgroundTint="#49A6E9"
-                android:textColor="#FFFFFF"
-                android:layout_marginStart="4dp"/>
-
-            <Button
-                android:id="@+id/buttonEnviarSolicitacao"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Enviar Solicitação"
+                android:text="Voltar"
                 android:backgroundTint="#264D73"
                 android:textColor="#FFFFFF"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"/>
+
+            <Button
+                android:id="@+id/buttonContinuar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Continuar"
+                android:backgroundTint="#264D73"
+                android:textColor="#FFFFFF"
+                android:layout_marginTop="16dp"
                 android:layout_marginStart="8dp"/>
         </LinearLayout>
     </LinearLayout>
