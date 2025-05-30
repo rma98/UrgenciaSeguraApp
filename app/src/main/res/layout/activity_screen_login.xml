@@ -141,6 +141,20 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginStart="8dp" />
 
+            <!-- LINK: Esqueceu a senha? -->
+            <TextView
+                android:id="@+id/textEsqueceuSenha"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Esqueceu a senha?"
+                android:textColor="#49A6E9"
+                android:textStyle="bold"
+                android:clickable="true"
+                android:focusable="true"
+                app:layout_constraintTop_toBottomOf="@id/editTextSenha"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="12dp" /> <!-- Aumentei o marginTop para dar respiro -->
+
             <!-- BOTÃO ENTRAR -->
             <Button
                 android:id="@+id/buttonEntrar"
@@ -149,10 +163,10 @@
                 android:text="Entrar"
                 android:textColor="#FFFFFF"
                 android:backgroundTint="#264D73"
-                app:layout_constraintTop_toBottomOf="@id/editTextSenha"
+                app:layout_constraintTop_toBottomOf="@id/textEsqueceuSenha"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginTop="16dp" />
+                android:layout_marginTop="16dp" /> <!-- Mantemos o espaçamento padrão -->
 
             <!-- TEXTO: Não possui conta? -->
             <TextView

@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -38,6 +39,7 @@ class ScreenLoginActivity : AppCompatActivity() {
         val editEmail = findViewById<EditText>(R.id.editTextEmail)
         val editSenha = findViewById<EditText>(R.id.editTextSenha)
         val buttonEntrar = findViewById<Button>(R.id.buttonEntrar)
+        val textEsqueceuSenha = findViewById<TextView>(R.id.textEsqueceuSenha)
 
         buttonEntrar.setOnClickListener {
             val emailTexto = editEmail.text.toString()
@@ -92,6 +94,23 @@ class ScreenLoginActivity : AppCompatActivity() {
                         Toast.makeText(this, "Erro ao fazer login: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
                     }
                 }
+        }
+        textEsqueceuSenha.setOnClickListener {
+            val email = editEmail.text.toString()
+
+            if (email.isEmpty()) {
+                Toast.makeText(this, "Por favor, informe seu e-mail para recuperar a senha.", Toast.LENGTH_SHORT).show()
+            } else {
+                val auth = FirebaseAuth.getInstance()
+                auth.sendPasswordResetEmail(email)
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            Toast.makeText(this, "E-mail de recuperação enviado!", Toast.LENGTH_SHORT).show()
+                        } else {
+                            Toast.makeText(this, "Erro ao enviar e-mail: ${task.exception?.message}", Toast.LENGTH_LONG).show()
+                        }
+                    }
+            }
         }
     }
 }
