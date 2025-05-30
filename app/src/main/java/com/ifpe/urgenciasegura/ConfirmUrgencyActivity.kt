@@ -42,6 +42,7 @@ class ConfirmUrgencyActivity : AppCompatActivity() {
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private val LOCATION_PERMISSION_REQUEST_CODE = 1001
     private var ultimaLocalizacao: String? = null
+    private val CAMERA_PERMISSION_REQUEST_CODE = 2001
     private val REQUEST_IMAGE_CAPTURE = 1
     private var fotoUri: Uri? = null
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -145,7 +146,7 @@ class ConfirmUrgencyActivity : AppCompatActivity() {
         val botaoTirarFoto = findViewById<Button>(R.id.buttonTirarFoto)
         botaoTirarFoto.setOnClickListener {
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CAMERA), REQUEST_IMAGE_CAPTURE)
+                ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CAMERA), CAMERA_PERMISSION_REQUEST_CODE)
             } else {
                 abrirCamera()
             }
@@ -196,13 +197,22 @@ class ConfirmUrgencyActivity : AppCompatActivity() {
         grantResults: IntArray
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (requestCode == LOCATION_PERMISSION_REQUEST_CODE &&
-            grantResults.isNotEmpty() &&
-            grantResults[0] == PackageManager.PERMISSION_GRANTED
-        ) {
-            obterLocalizacaoAtual()
-        } else {
-            Toast.makeText(this, "Permissão de localização negada", Toast.LENGTH_SHORT).show()
+
+        when (requestCode) {
+            LOCATION_PERMISSION_REQUEST_CODE -> {
+                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    obterLocalizacaoAtual()
+                } else {
+                    Toast.makeText(this, "Permissão de localização negada", Toast.LENGTH_SHORT).show()
+                }
+            }
+            CAMERA_PERMISSION_REQUEST_CODE -> {
+                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    abrirCamera()
+                } else {
+                    Toast.makeText(this, "Permissão da câmera negada", Toast.LENGTH_SHORT).show()
+                }
+            }
         }
     }
     private fun abrirCamera() {
