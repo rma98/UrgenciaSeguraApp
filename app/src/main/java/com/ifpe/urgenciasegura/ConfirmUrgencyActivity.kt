@@ -248,6 +248,16 @@ class ConfirmUrgencyActivity : AppCompatActivity() {
         val dataHora = SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault()).format(Date())
         val localizacaoAtual = ultimaLocalizacao ?: "Localização não disponível"
 
+        // 💡 Pegando o órgão selecionado
+        val radioGroup = findViewById<RadioGroup>(R.id.radioGroupServico)
+        val selectedRadioId = radioGroup.checkedRadioButtonId
+        val orgaoSelecionado = when (selectedRadioId) {
+            R.id.radioSamu -> "SAMU"
+            R.id.radioDefesaCivil -> "Defesa Civil"
+            else -> "Outro"
+        }
+
+        // 🔥 Incluindo o órgão no mapa de dados
         val dadosUrgencia = mutableMapOf(
             "nome" to nome,
             "idade" to idade,
@@ -255,7 +265,8 @@ class ConfirmUrgencyActivity : AppCompatActivity() {
             "observacao" to observacao,
             "tipoUrgencia" to tipoUrgencia,
             "dataHora" to dataHora,
-            "localizacao" to localizacaoAtual
+            "localizacao" to localizacaoAtual,
+            "orgao" to orgaoSelecionado
         )
 
         ref.child("usuario").push().setValue(dadosUrgencia)
