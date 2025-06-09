@@ -29,6 +29,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import java.util.Date
 import java.util.Locale
@@ -242,7 +243,13 @@ class ConfirmUrgencyActivity : AppCompatActivity() {
         observacao: String
     ) {
         val database = FirebaseDatabase.getInstance()
-        val ref = database.getReference("urgencias")
+        val ref = database.getReference("urgencias/usuario")
+
+        val uid = FirebaseAuth.getInstance().currentUser?.uid ?: return
+        if (uid == null) {
+            Toast.makeText(this, "Usuário não autenticado.", Toast.LENGTH_SHORT).show()
+            return
+        }
 
         val tipoUrgencia = obterTipoUrgencia()
         val dataHora = SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault()).format(Date())
@@ -269,7 +276,7 @@ class ConfirmUrgencyActivity : AppCompatActivity() {
             "orgao" to orgaoSelecionado
         )
 
-        ref.child("usuario").push().setValue(dadosUrgencia)
+        ref.child(uid).push().setValue(dadosUrgencia)
             .addOnSuccessListener {
                 Toast.makeText(this, "Solicitação enviada com sucesso!", Toast.LENGTH_SHORT).show()
             }

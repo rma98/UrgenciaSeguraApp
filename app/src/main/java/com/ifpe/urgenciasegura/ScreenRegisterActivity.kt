@@ -144,7 +144,7 @@ class ScreenRegisterActivity : AppCompatActivity() {
             // 1. Instâncias do Firebase Auth e Realtime Database
             val auth = FirebaseAuth.getInstance()
             val database = FirebaseDatabase.getInstance()
-            val referenciaUsuarios = database.getReference("usuarios")
+            val referenciaUsuarios = database.getReference("usuarios_mobile")
             // 2. Capturar os valores digitados
             val nomeTexto = nome.text.toString()
             val idadeTexto = idade.text.toString()

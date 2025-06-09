@@ -52,7 +52,7 @@ class ScreenLoginActivity : AppCompatActivity() {
 
             val auth = FirebaseAuth.getInstance()
             val database = FirebaseDatabase.getInstance()
-            val referenciaUsuarios = database.getReference("usuarios")
+            val referenciaUsuarios = database.getReference("usuarios_mobile")
 
             auth.signInWithEmailAndPassword(emailTexto, senhaTexto)
                 .addOnCompleteListener { task ->
