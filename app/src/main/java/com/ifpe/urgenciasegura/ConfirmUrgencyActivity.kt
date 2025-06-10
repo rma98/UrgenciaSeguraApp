@@ -243,7 +243,7 @@ class ConfirmUrgencyActivity : AppCompatActivity() {
         observacao: String
     ) {
         val database = FirebaseDatabase.getInstance()
-        val ref = database.getReference("urgencias/usuario")
+        val ref = database.getReference("urgencias")
 
         val uid = FirebaseAuth.getInstance().currentUser?.uid ?: return
         if (uid == null) {
