@@ -271,9 +271,11 @@ class ConfirmUrgencyActivity : AppCompatActivity() {
             "celular" to celular,
             "observacao" to observacao,
             "tipoUrgencia" to tipoUrgencia,
-            "dataHora" to dataHora,
+            "dataHoraInicio" to dataHora,
+            "dataHoraFim" to "",
             "localizacao" to localizacaoAtual,
-            "orgao" to orgaoSelecionado
+            "orgao" to orgaoSelecionado,
+            "status" to "novo"
         )
 
         ref.child(uid).push().setValue(dadosUrgencia)
